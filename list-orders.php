@@ -3,6 +3,14 @@
 <!doctype html>
 <html data-theme="light">
 
+<?php
+include 'koneksi.php';
+
+$sql = "SELECT * FROM orders ORDER BY id DESC";
+$result = mysqli_query($koneksi, $sql);
+$ordersList = mysqli_fetch_all($result, MYSQLI_ASSOC);
+?>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,79 +19,6 @@
 </head>
 
 <body>
-    <script>
-    let cartsData = JSON.parse(localStorage.getItem('carts')) || [];
-
-    function total() {
-        let total = 0;
-        cartsData.forEach((cart) => {
-            total += cart.price * cart.quantity;
-        });
-        return total;
-    }
-
-    function minus(id) {
-        const quantityId = `quantity-${id}`;
-        let quantity = document.getElementById(quantityId).value;
-        if (quantity > 0) {
-            quantity--;
-        }
-        document.getElementById(quantityId).value = quantity;
-
-        // if 0 so remove from cart
-        if (quantity == 0) {
-            cartsData = cartsData.filter((cart) => cart.id != id);
-            localStorage.setItem('carts', JSON.stringify(cartsData));
-
-            // refresh page
-            window.location.reload();
-        }
-
-        // update quantiy in carts
-        cartsData.forEach((cart) => {
-            if (cart.id == id) {
-                cart.quantity = quantity;
-            }
-        });
-
-        localStorage.setItem('carts', JSON.stringify(cartsData));
-
-        // update total
-        document.querySelector('.text-green-700').innerHTML = `Rp ${toRp(total())}`;
-    }
-
-    function plus(id) {
-        const quantityId = `quantity-${id}`
-        let quantity = document.getElementById(quantityId).value;
-        quantity++;
-        document.getElementById(quantityId).value = quantity;
-
-        // update total
-        document.querySelector('.text-green-700').innerHTML = `Rp ${toRp(total())}`;
-
-        // update cart
-        cartsData.forEach((cart) => {
-            if (cart.id == id) {
-                cart.quantity = quantity;
-            }
-        })
-        localStorage.setItem('carts', JSON.stringify(cartsData));
-    }
-
-    function toRp(angka) {
-        var rev = parseInt(angka, 10).toString().split('').reverse().join('');
-        var rev2 = '';
-        for (var i = 0; i < rev.length; i++) {
-            rev2 += rev[i];
-            if ((i + 1) % 3 === 0 && i !== (rev.length - 1)) {
-                rev2 += '.';
-            }
-        }
-        return rev2.split('').reverse().join('')
-    }
-    </script>
-
-
     <div class="w-full mx-auto pb-20">
         <?php include_once 'navbar.php'; ?>
 
@@ -94,36 +29,35 @@
             <h1 class="text-3xl font-semibold text-left">List Orders</h1>
             <div class="divider"></div>
 
-            <div class="flex flex-col gap-y-3">
-                <script>
-                for (let i = 0; i < cartsData.length; i++) {
-                    document.write(`
-                        <div class="flex gap-x-5 justify-between">
-                        <div class="flex gap-x-2">
-                            <img src="${cartsData[i].picture}" alt="empty cart" class="w-12 h-14 rounded-xl object-cover">
-                            <div>
-                                <h1 class="font-medium text-black">${cartsData[i].name}</h1>
-                                <h1 class="font-semibold text-orange-500 text-xs">Rp ${toRp(cartsData[i].price)}</h1>
+            <!-- loop the data -->
+            <?php foreach ($ordersList as $order) : ?>
+                <div class="flex flex-col w-full p-4 my-4 bg-white rounded-lg shadow-md">
+                    <div class="flex flex-row justify-between">
+                        <div class="flex flex-col">
+                            <h1 class="text-xl font-semibold text-left"><?= $order['name'] ?></h1>
+                            <p class="text-sm text-left text-sky-600"><?= 'Via ' . $order['paymentMethod'] ?></p>
+                        </div>
+                        <div class="flex flex-col">
+                            <h1 class="text-xl font-semibold text-right"><?= $order['total'] ?></h1>
+                            <?php
+                            $data = json_decode($order['data'], true);
+                            ?>
+                            <!-- loop $data -->
+                            <div class="space-y-2">
+                                <?php foreach ($data as $item) : ?>
+                                    <div class="flex items-center gap-x-2">
+                                        <img src="<?= $item['picture'] ?>" alt="" class="w-6 h-6 object-cover rounded-full">
+                                        <p class="text-sm text-right text-green-600">
+                                            <?= $item['name'] . ' ➜ ' . $item['quantity']  . ' Buah' ?></p>
+                                    </div>
+                                <?php endforeach; ?>
                             </div>
                         </div>
-                        </div>
-                        `);
-                }
-                </script>
-            </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
         </div>
     </div>
-    <script>
-    function savePaymentMethod() {
-        const paymentMethod = document.getElementById('payment-method').value;
-        localStorage.setItem('paymentMethod', paymentMethod);
-    }
-
-    function saveName() {
-        const name = document.getElementById('name').value;
-        localStorage.setItem('name', name);
-    }
-    </script>
 </body>
 
 </html>

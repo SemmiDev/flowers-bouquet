@@ -19,6 +19,10 @@
         cartsData.forEach((cart) => {
             total += cart.price * cart.quantity;
         });
+
+        // save total to local storage
+        localStorage.setItem('total', `Rp ${toRp(total)}`);
+
         return total;
     }
 
@@ -50,6 +54,9 @@
 
         // update total
         document.querySelector('.text-green-700').innerHTML = `Rp ${toRp(total())}`;
+
+        // save total to local storage
+        localStorage.setItem('total', `Rp ${toRp(total())}`);
     }
 
     function plus(id) {
@@ -60,6 +67,9 @@
 
         // update total
         document.querySelector('.text-green-700').innerHTML = `Rp ${toRp(total())}`;
+
+        // save total to local storage
+        localStorage.setItem('total', `Rp ${toRp(total())}`);
 
         // update cart
         cartsData.forEach((cart) => {
@@ -132,7 +142,7 @@
                         <span class="label-text">Masukkan nama anda</span>
                     </label>
                     <input type="text" id="name" onchange="saveName()" placeholder="Otong"
-                        class="input input-bordered w-full max-w-xs" />
+                        class="input input-bordered w-full input-sm max-w-xs" />
                 </div>
 
                 <div>

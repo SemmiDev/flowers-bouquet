@@ -11,9 +11,28 @@
 </head>
 
 <body class="flex flex-col items-center min-h-screen w-full justify-center">
-    <a href="index.php" class="justify-center items-center btn btn-xl btn-success">thank you for your order </a>
+
+    <form action="process.php" method="post" class="flex flex-col gap-1">
+        <input name="name" type="text" hidden value="-" id="name">
+        <input name="total" type="text" hidden value="-" id="total">
+        <input name="paymentMethod" type="text" hidden value="-" id="paymentMethod">
+        <input name="data" type="text" hidden value="-" id="carts">
+        <button class="justify-center items-center btn btn-xl btn-primary btn-outline">thank you for your order
+        </button>
+        <button href="index.php" class="btn btn-info mt-5">SELESAI</button>
+    </form>
+
     <script>
-        // localStorage.removeItem('carts');
+        let name = localStorage.getItem('name');
+        let total = localStorage.getItem('total');
+        let paymentMethod = localStorage.getItem('paymentMethod');
+        let cartsData = JSON.parse(localStorage.getItem('carts')) || [];
+
+        // set value in form
+        document.getElementById('name').value = name;
+        document.getElementById('total').value = total;
+        document.getElementById('paymentMethod').value = paymentMethod;
+        document.getElementById('carts').value = JSON.stringify(cartsData);
     </script>
 </body>
 
