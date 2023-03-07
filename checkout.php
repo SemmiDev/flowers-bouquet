@@ -11,9 +11,9 @@
 </head>
 
 <body class="flex flex-col items-center min-h-screen w-full justify-center">
-    <a href="index.php" class="justify-center items-center btn btn-xl btn-success">Success</a>
+    <a href="index.php" class="justify-center items-center btn btn-xl btn-success">thank you for your order </a>
     <script>
-        localStorage.removeItem('carts');
+        // localStorage.removeItem('carts');
     </script>
 </body>
 

@@ -12,9 +12,10 @@
                 <li><a href="index.php#start-shopping">Shop</a></li>
                 <li><a href="index.php#contact-us">Custom Order</a></li>
                 <li><a href="index.php#contact-us">Contact</a></li>
+                <li><a href="list-orders.php">List Orders</a></li>
             </ul>
         </div>
-        <a class="btn btn-ghost normal-case text-xl">Flowereal</a>
+        <a class="btn btn-ghost normal-case hidden md:block lg:block text-xl">Dwihana Florist & Bouquet</a>
     </div>
     <div class="navbar-center hidden lg:flex">
         <ul class="menu menu-horizontal px-1">
@@ -22,6 +23,7 @@
             <li><a href="index.php#start-shopping">Shop</a></li>
             <li><a href="index.php#contact-us">Custom Order</a></li>
             <li><a href="index.php#contact-us">Contact</a></li>
+            <li><a href="list-orders.php">List Orders</a></li>
         </ul>
     </div>
     <div class="navbar-end">

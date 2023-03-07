@@ -1,6 +1,6 @@
 <footer class="footer items-center max-w-7xl mb-5 mx-auto bg-base-100 text-black">
     <div class="flex flex-col gap-y-1">
-        <h1 class="text-3xl font-bold">Flowereal</h1>
+        <h1 class="text-3xl font-bold">Dwihana Florist & Bouquet</h1>
         <p>
             Crafting unforgettable moments with every arrangement.
         </p>

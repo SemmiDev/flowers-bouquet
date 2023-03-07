@@ -19,15 +19,13 @@
             <div class="absolute inset-0 gap-y-5 flex flex-col items-center justify-center">
                 <h1 class="text-black text-7xl font-bold">Blooming With Beauty</h1>
                 <p class="text-lg">Discover the perfect bouquet at our flower shop</p>
-                <a href="index.php#start-shopping"
-                    class="px-12 py-3 bg-white hover:bg-base-200 mt-8 text-black rounded-full">
+                <a href="index.php#start-shopping" class="px-12 py-3 bg-white hover:bg-base-200 mt-8 text-black rounded-full">
                     Shop Now
                 </a>
             </div>
         </div>
 
-        <section id="about-us"
-            class="grid py-12 grid-cols-2 text-white mt-20 px-20 w-full place-items-center self-center bg-[#9E9D89]">
+        <section id="about-us" class="grid py-12 grid-cols-2 text-white mt-20 px-20 w-full place-items-center self-center bg-[#9E9D89]">
             <div>
                 <h1 class="text-7xl">About</h1>
                 <p class="mt-12 max-w-lg break-all w-full">
@@ -49,21 +47,20 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 mt-5">
                     <?php foreach ($flowers  as $k => $flower) : ?>
-                    <div class="pb-6 w-56 relative overflow-hidden rounded-2xl bg-white">
-                        <?php echo buildImage($flower['picture']) ?>
-                        <div class="px-5 mt-2 flex justify-between items-center">
-                            <div>
-                                <?php echo buildTitle($flower['name']) ?>
-                                <?php echo buildPrice($flower['price']) ?>
+                        <div class="pb-6 w-56 relative overflow-hidden rounded-2xl bg-white">
+                            <?php echo buildImage($flower['picture']) ?>
+                            <div class="px-5 mt-2 flex justify-between items-center">
+                                <div>
+                                    <?php echo buildTitle($flower['name']) ?>
+                                    <?php echo buildPrice($flower['price']) ?>
+                                </div>
+                                <?php echo buildCartIcon($flower['id']) ?>
                             </div>
-                            <?php echo buildCartIcon($flower['id']) ?>
                         </div>
-                    </div>
                     <?php endforeach; ?>
                 </div>
             </div>
-            <a href="all-products.php"
-                class="font-bold text-center text-white text-xl px-5 py-2 bg-[#9E9D89] rounded-full my-12">View All</a>
+            <a href="all-products.php" class="font-bold text-center text-white text-xl px-5 py-2 bg-[#9E9D89] rounded-full my-12">View All</a>
         </div>
 
         <div class="flex gap-x-20 items-center justify-center bg-[#FCE2DB] flex-col">
@@ -73,36 +70,24 @@
                     <div class="-m-1 flex flex-wrap md:-m-2">
                         <div class="flex w-1/2 flex-wrap">
                             <div class="w-1/2 p-1 md:p-2">
-                                <img alt="gallery"
-                                    class="block hover:scale-95 transition-all duration-300 ease-linear h-full w-full rounded-lg object-cover object-center"
-                                    src="https://cdn.shopify.com/s/files/1/0271/5533/3229/products/IMG_6259_600x.jpg?v=1658565837" />
+                                <img alt="gallery" class="block hover:scale-95 transition-all duration-300 ease-linear h-full w-full rounded-lg object-cover object-center" src="https://cdn.shopify.com/s/files/1/0271/5533/3229/products/IMG_6259_600x.jpg?v=1658565837" />
                             </div>
                             <div class="w-1/2 p-1 md:p-2">
-                                <img alt="gallery"
-                                    class="block hover:scale-95 transition-all duration-300 ease-linear h-full w-full rounded-lg object-cover object-center"
-                                    src="https://cdn.shopify.com/s/files/1/0271/5533/3229/products/IMG_7573_600x.jpg?v=1658565648" />
+                                <img alt="gallery" class="block hover:scale-95 transition-all duration-300 ease-linear h-full w-full rounded-lg object-cover object-center" src="https://cdn.shopify.com/s/files/1/0271/5533/3229/products/IMG_7573_600x.jpg?v=1658565648" />
                             </div>
                             <div class="w-full p-1 md:p-2">
-                                <img alt="gallery"
-                                    class="block hover:scale-95 transition-all duration-300 ease-linear h-full w-full rounded-lg object-cover object-center"
-                                    src="https://cdn.shopify.com/s/files/1/1789/5809/products/Precious_Purple_400x.jpg?v=1574922828" />
+                                <img alt="gallery" class="block hover:scale-95 transition-all duration-300 ease-linear h-full w-full rounded-lg object-cover object-center" src="https://cdn.shopify.com/s/files/1/1789/5809/products/Precious_Purple_400x.jpg?v=1574922828" />
                             </div>
                         </div>
                         <div class="flex w-1/2 flex-wrap">
                             <div class="w-full p-1 md:p-2">
-                                <img alt="gallery"
-                                    class="block hover:scale-95 transition-all duration-300 ease-linear h-full w-full rounded-lg object-cover object-center"
-                                    src="https://cdn.shopify.com/s/files/1/0271/5533/3229/products/IMG_6301_600x.jpg?v=1658565376" />
+                                <img alt="gallery" class="block hover:scale-95 transition-all duration-300 ease-linear h-full w-full rounded-lg object-cover object-center" src="https://cdn.shopify.com/s/files/1/0271/5533/3229/products/IMG_6301_600x.jpg?v=1658565376" />
                             </div>
                             <div class="w-1/2 p-1 md:p-2">
-                                <img alt="gallery"
-                                    class="block hover:scale-95 transition-all duration-300 ease-linear h-full w-full rounded-lg object-cover object-center"
-                                    src="https://cdn.shopify.com/s/files/1/1789/5809/products/0620-Overload-Thumbnail-01_400x.jpg?v=1592275040" />
+                                <img alt="gallery" class="block hover:scale-95 transition-all duration-300 ease-linear h-full w-full rounded-lg object-cover object-center" src="https://cdn.shopify.com/s/files/1/1789/5809/products/0620-Overload-Thumbnail-01_400x.jpg?v=1592275040" />
                             </div>
                             <div class="w-1/2 p-1 md:p-2">
-                                <img alt="gallery"
-                                    class="block hover:scale-95 transition-all duration-300 ease-linear h-full w-full rounded-lg object-cover object-center"
-                                    src="https://cdn.shopify.com/s/files/1/1789/5809/products/0820-JustForYou-Thumbnail-01_400x.jpg?v=1598248788" />
+                                <img alt="gallery" class="block hover:scale-95 transition-all duration-300 ease-linear h-full w-full rounded-lg object-cover object-center" src="https://cdn.shopify.com/s/files/1/1789/5809/products/0820-JustForYou-Thumbnail-01_400x.jpg?v=1598248788" />
                             </div>
                         </div>
                     </div>
@@ -118,8 +103,7 @@
                     <input type="text" placeholder="Full Name" class="input input-bordered input-lg w-96 max-w-lg" />
                     <input type="text" placeholder="Phone Number" class="input input-bordered input-lg w-96 max-w-lg" />
                     <input type="email" placeholder="Email" class="input input-bordered input-lg w-96 max-w-lg" />
-                    <textarea placeholder="Your Message"
-                        class="textarea textarea-bordered textarea-lg w-96 max-w-lg"></textarea>
+                    <textarea placeholder="Your Message" class="textarea textarea-bordered textarea-lg w-96 max-w-lg"></textarea>
                     <button class="btn btn-secondary btn-lg">Send</button>
                 </div>
             </div>

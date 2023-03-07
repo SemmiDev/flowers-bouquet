@@ -91,7 +91,7 @@
 
         </div>
         <div class="max-w-3xl w-full p-12 mx-auto">
-            <h1 class="text-3xl font-semibold text-left">Shopping Cart</h1>
+            <h1 class="text-3xl font-semibold text-left">List Orders</h1>
             <div class="divider"></div>
 
             <div class="flex flex-col gap-y-3">
@@ -106,83 +106,11 @@
                                 <h1 class="font-semibold text-orange-500 text-xs">Rp ${toRp(cartsData[i].price)}</h1>
                             </div>
                         </div>
-                            <div class="flex ml-5 justify-between w-24 items-center">
-                                <button
-                                onclick="minus(${cartsData[i].id})"
-                                id="btn-minus" class="bg-gray-300 text-gray-800 hover:bg-gray-400 rounded-l-lg px-2 py-1">
-                                    -
-                                </button>
-                                <input
-                                id="quantity-${cartsData[i].id}"
-                                type="text" class="w-12 text-center border-gray-300 focus:outline-none focus:border-blue-300 px-2 py-1" value="${cartsData[i].quantity}">
-                                <button
-                                onclick="plus(${cartsData[i].id})"
-                                id="btn-plus" class="bg-gray-300 text-gray-800 hover:bg-gray-400 rounded-r-lg px-2 py-1">
-                                    +
-                                </button>
-                            </div>
                         </div>
                         `);
                 }
                 </script>
-
-
-                <div class="form-control w-full max-w-xs">
-                    <label class="label">
-                        <span class="label-text">Masukkan nama anda</span>
-                    </label>
-                    <input type="text" id="name" onchange="saveName()" placeholder="Otong"
-                        class="input input-bordered w-full max-w-xs" />
-                </div>
-
-                <div>
-                    <h1 class="text-sm font-bold">Pilih Metode Pembayaran</h1>
-                    <img src="./images/payment.png" class="w-56 object-cover" alt="">
-                    <select onchange="savePaymentMethod()" name="payment-method" id="payment-method">
-                        <option disabled selected>
-                            <div class="flex items-center">
-                                Pilih
-                            </div>
-                        </option>
-                        <option value="ovo">
-                            <div class="flex items-center">
-                                OVO
-                            </div>
-                        </option>
-                        <option value="dana">
-                            <div class="flex items-center">
-                                Dana
-                            </div>
-                        </option>
-                        <option value="bri">
-                            <div class="flex items-center">
-                                BRI
-                            </div>
-                        </option>
-                        <option value="bni">
-                            <div class="flex items-center">
-                                BNI
-                            </div>
-                        </option>
-                    </select>
-                </div>
-
-                <div class="flex flex-col gap-y-2 mt-12">
-                    <div>
-                        <h1>Total</h1>
-                        <p class="font-bold text-sm text-green-700">
-                            <script>
-                            document.write(`Rp ${toRp(total())}`);
-                            </script>
-                        </p>
-                    </div>
-
-                    <a href="checkout.php" class="btn btn-sm btn-outline w-32 btn-info">
-                        Checkout
-                    </a>
-                </div>
             </div>
-
         </div>
     </div>
     <script>
