@@ -12,85 +12,85 @@
 
 <body>
     <script>
-    let cartsData = JSON.parse(localStorage.getItem('carts')) || [];
+        let cartsData = JSON.parse(localStorage.getItem('carts')) || [];
 
-    function total() {
-        let total = 0;
-        cartsData.forEach((cart) => {
-            total += cart.price * cart.quantity;
-        });
+        function total() {
+            let total = 0;
+            cartsData.forEach((cart) => {
+                total += cart.price * cart.quantity;
+            });
 
-        // save total to local storage
-        localStorage.setItem('total', `Rp ${toRp(total)}`);
+            // save total to local storage
+            localStorage.setItem('total', `Rp ${toRp(total)}`);
 
-        return total;
-    }
-
-    function minus(id) {
-        const quantityId = `quantity-${id}`;
-        let quantity = document.getElementById(quantityId).value;
-        if (quantity > 0) {
-            quantity--;
+            return total;
         }
-        document.getElementById(quantityId).value = quantity;
 
-        // if 0 so remove from cart
-        if (quantity == 0) {
-            cartsData = cartsData.filter((cart) => cart.id != id);
+        function minus(id) {
+            const quantityId = `quantity-${id}`;
+            let quantity = document.getElementById(quantityId).value;
+            if (quantity > 0) {
+                quantity--;
+            }
+            document.getElementById(quantityId).value = quantity;
+
+            // if 0 so remove from cart
+            if (quantity == 0) {
+                cartsData = cartsData.filter((cart) => cart.id != id);
+                localStorage.setItem('carts', JSON.stringify(cartsData));
+
+                // refresh page
+                window.location.reload();
+            }
+
+            // update quantiy in carts
+            cartsData.forEach((cart) => {
+                if (cart.id == id) {
+                    cart.quantity = quantity;
+                }
+            });
+
             localStorage.setItem('carts', JSON.stringify(cartsData));
 
-            // refresh page
-            window.location.reload();
+            // update total
+            document.querySelector('.text-green-700').innerHTML = `Rp ${toRp(total())}`;
+
+            // save total to local storage
+            localStorage.setItem('total', `Rp ${toRp(total())}`);
         }
 
-        // update quantiy in carts
-        cartsData.forEach((cart) => {
-            if (cart.id == id) {
-                cart.quantity = quantity;
-            }
-        });
+        function plus(id) {
+            const quantityId = `quantity-${id}`
+            let quantity = document.getElementById(quantityId).value;
+            quantity++;
+            document.getElementById(quantityId).value = quantity;
 
-        localStorage.setItem('carts', JSON.stringify(cartsData));
+            // update total
+            document.querySelector('.text-green-700').innerHTML = `Rp ${toRp(total())}`;
 
-        // update total
-        document.querySelector('.text-green-700').innerHTML = `Rp ${toRp(total())}`;
+            // save total to local storage
+            localStorage.setItem('total', `Rp ${toRp(total())}`);
 
-        // save total to local storage
-        localStorage.setItem('total', `Rp ${toRp(total())}`);
-    }
-
-    function plus(id) {
-        const quantityId = `quantity-${id}`
-        let quantity = document.getElementById(quantityId).value;
-        quantity++;
-        document.getElementById(quantityId).value = quantity;
-
-        // update total
-        document.querySelector('.text-green-700').innerHTML = `Rp ${toRp(total())}`;
-
-        // save total to local storage
-        localStorage.setItem('total', `Rp ${toRp(total())}`);
-
-        // update cart
-        cartsData.forEach((cart) => {
-            if (cart.id == id) {
-                cart.quantity = quantity;
-            }
-        })
-        localStorage.setItem('carts', JSON.stringify(cartsData));
-    }
-
-    function toRp(angka) {
-        var rev = parseInt(angka, 10).toString().split('').reverse().join('');
-        var rev2 = '';
-        for (var i = 0; i < rev.length; i++) {
-            rev2 += rev[i];
-            if ((i + 1) % 3 === 0 && i !== (rev.length - 1)) {
-                rev2 += '.';
-            }
+            // update cart
+            cartsData.forEach((cart) => {
+                if (cart.id == id) {
+                    cart.quantity = quantity;
+                }
+            })
+            localStorage.setItem('carts', JSON.stringify(cartsData));
         }
-        return rev2.split('').reverse().join('')
-    }
+
+        function toRp(angka) {
+            var rev = parseInt(angka, 10).toString().split('').reverse().join('');
+            var rev2 = '';
+            for (var i = 0; i < rev.length; i++) {
+                rev2 += rev[i];
+                if ((i + 1) % 3 === 0 && i !== (rev.length - 1)) {
+                    rev2 += '.';
+                }
+            }
+            return rev2.split('').reverse().join('')
+        }
     </script>
 
 
@@ -106,8 +106,8 @@
 
             <div class="flex flex-col gap-y-3">
                 <script>
-                for (let i = 0; i < cartsData.length; i++) {
-                    document.write(`
+                    for (let i = 0; i < cartsData.length; i++) {
+                        document.write(`
                         <div class="flex gap-x-5 justify-between">
                         <div class="flex gap-x-2">
                             <img src="${cartsData[i].picture}" alt="empty cart" class="w-12 h-14 rounded-xl object-cover">
@@ -133,16 +133,28 @@
                             </div>
                         </div>
                         `);
-                }
+                    }
                 </script>
 
 
                 <div class="form-control w-full max-w-xs">
                     <label class="label">
-                        <span class="label-text">Masukkan nama anda</span>
+                        <span class="label-text">Masukkan nama</span>
                     </label>
-                    <input type="text" id="name" onchange="saveName()" placeholder="Otong"
-                        class="input input-bordered w-full input-sm max-w-xs" />
+                    <input type="text" id="name" onchange="saveName()" placeholder="Otong" class="input input-bordered w-full input-sm max-w-xs" />
+                </div>
+
+                <div class="form-control w-full max-w-xs">
+                    <label class="label">
+                        <span class="label-text">Masukkan email</span>
+                    </label>
+                    <input type="email" id="email" onchange="saveEmail()" placeholder="otong@gmail.com" class="input input-bordered w-full input-sm max-w-xs" />
+                </div>
+                <div class="form-control w-full max-w-xs">
+                    <label class="label">
+                        <span class="label-text">Masukkan alamat</span>
+                    </label>
+                    <input type="text" id="address" onchange="saveAddress()" placeholder="JL Kenangan kita 91, Jakarta" class="input input-bordered w-full input-sm max-w-xs" />
                 </div>
 
                 <div>
@@ -182,7 +194,7 @@
                         <h1>Total</h1>
                         <p class="font-bold text-sm text-green-700">
                             <script>
-                            document.write(`Rp ${toRp(total())}`);
+                                document.write(`Rp ${toRp(total())}`);
                             </script>
                         </p>
                     </div>
@@ -196,15 +208,25 @@
         </div>
     </div>
     <script>
-    function savePaymentMethod() {
-        const paymentMethod = document.getElementById('payment-method').value;
-        localStorage.setItem('paymentMethod', paymentMethod);
-    }
+        function savePaymentMethod() {
+            const paymentMethod = document.getElementById('payment-method').value;
+            localStorage.setItem('paymentMethod', paymentMethod);
+        }
 
-    function saveName() {
-        const name = document.getElementById('name').value;
-        localStorage.setItem('name', name);
-    }
+        function saveName() {
+            const name = document.getElementById('name').value;
+            localStorage.setItem('name', name);
+        }
+
+        function saveEmail() {
+            const email = document.getElementById('email').value;
+            localStorage.setItem('email', email);
+        }
+
+        function saveAddress() {
+            const address = document.getElementById('address').value;
+            localStorage.setItem('address', address);
+        }
     </script>
 </body>
 

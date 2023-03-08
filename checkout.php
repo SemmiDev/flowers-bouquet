@@ -14,6 +14,8 @@
 
     <form action="process.php" method="post" class="flex flex-col gap-1">
         <input name="name" type="text" hidden value="-" id="name">
+        <input name="email" type="text" hidden value="-" id="email">
+        <input name="address" type="text" hidden value="-" id="address">
         <input name="total" type="text" hidden value="-" id="total">
         <input name="paymentMethod" type="text" hidden value="-" id="paymentMethod">
         <input name="data" type="text" hidden value="-" id="carts">
@@ -23,16 +25,20 @@
     </form>
 
     <script>
-        let name = localStorage.getItem('name');
-        let total = localStorage.getItem('total');
-        let paymentMethod = localStorage.getItem('paymentMethod');
-        let cartsData = JSON.parse(localStorage.getItem('carts')) || [];
+    let name = localStorage.getItem('name');
+    let total = localStorage.getItem('total');
+    let email = localStorage.getItem('email');
+    let address = localStorage.getItem('address');
+    let paymentMethod = localStorage.getItem('paymentMethod');
+    let cartsData = JSON.parse(localStorage.getItem('carts')) || [];
 
-        // set value in form
-        document.getElementById('name').value = name;
-        document.getElementById('total').value = total;
-        document.getElementById('paymentMethod').value = paymentMethod;
-        document.getElementById('carts').value = JSON.stringify(cartsData);
+    // set value in form
+    document.getElementById('name').value = name;
+    document.getElementById('total').value = total;
+    document.getElementById('email').value = email;
+    document.getElementById('address').value = address;
+    document.getElementById('paymentMethod').value = paymentMethod;
+    document.getElementById('carts').value = JSON.stringify(cartsData);
     </script>
 </body>
 

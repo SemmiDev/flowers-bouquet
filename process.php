@@ -1,13 +1,15 @@
 <?php
 
 $name = $_POST['name'];
+$email = $_POST['email'];
+$address = $_POST['address'];
 $data = $_POST['data'];
 $total = $_POST['total'];
 $paymentMethod = $_POST['paymentMethod'];
 
 include 'koneksi.php';
 
-$sql = "INSERT INTO `orders` (`name`, `data`, `total`, `paymentMethod`) VALUES ('$name', '$data', '$total', '$paymentMethod')";
+$sql = "INSERT INTO `orders` (`name`, `data`, `total`, `paymentMethod`,`email`,`address`) VALUES ('$name', '$data', '$total', '$paymentMethod','$email','$address')";
 mysqli_query($koneksi, $sql);
 
 ?>

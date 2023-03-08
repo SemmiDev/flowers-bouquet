@@ -9,9 +9,12 @@ error_reporting(0);
 // -- password = wT1BD>t~]V1ZxJ&(
 
 $server = "localhost";
-$user = "id20401018_flowersbouquet";
-$pass = "wT1BD>t~]V1ZxJ&(";
-$database = "id20401018_flowers_bouquet";
+// $user = "id20401018_flowersbouquet";
+$user = "root";
+// $pass = "wT1BD>t~]V1ZxJ&(";
+$pass = "";
+// $database = "id20401018_flowers_bouquet";
+$database = "flowers_bouquet";
 
 $koneksi = mysqli_connect($server, $user, $pass, $database);
 

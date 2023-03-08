@@ -31,30 +31,33 @@ $ordersList = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
             <!-- loop the data -->
             <?php foreach ($ordersList as $order) : ?>
-                <div class="flex flex-col w-full p-4 my-4 bg-white rounded-lg shadow-md">
-                    <div class="flex flex-row justify-between">
-                        <div class="flex flex-col">
-                            <h1 class="text-xl font-semibold text-left"><?= $order['name'] ?></h1>
-                            <p class="text-sm text-left text-sky-600"><?= 'Via ' . $order['paymentMethod'] ?></p>
-                        </div>
-                        <div class="flex flex-col">
-                            <h1 class="text-xl font-semibold text-right"><?= $order['total'] ?></h1>
-                            <?php
+            <div class="flex flex-col w-full p-4 my-4 bg-white rounded-lg shadow-md">
+                <div class="flex flex-row justify-between">
+                    <div class="flex flex-col">
+                        <h1 class="text-xl font-semibold text-left"><?= $order['name'] ?></h1>
+                        <p class="text-xs text-left text-slate-900"><?= 'Email: ' . $order['email'] ?></p>
+                        <p class="text-xs text-left text-slate-900"><?= 'Alamat: ' . $order['address'] ?></p>
+                        <p class="text-xs text-left font-bold text-sky-600">
+                            <?= 'Pembayaran: ' . $order['paymentMethod'] ?></p>
+                    </div>
+                    <div class="flex flex-col">
+                        <h1 class="text-xl font-semibold text-right"><?= $order['total'] ?></h1>
+                        <?php
                             $data = json_decode($order['data'], true);
                             ?>
-                            <!-- loop $data -->
-                            <div class="space-y-2">
-                                <?php foreach ($data as $item) : ?>
-                                    <div class="flex items-center gap-x-2">
-                                        <img src="<?= $item['picture'] ?>" alt="" class="w-6 h-6 object-cover rounded-full">
-                                        <p class="text-sm text-right text-green-600">
-                                            <?= $item['name'] . ' ➜ ' . $item['quantity']  . ' Buah' ?></p>
-                                    </div>
-                                <?php endforeach; ?>
+                        <!-- loop $data -->
+                        <div class="space-y-2">
+                            <?php foreach ($data as $item) : ?>
+                            <div class="flex items-center gap-x-2">
+                                <img src="<?= $item['picture'] ?>" alt="" class="w-6 h-6 object-cover rounded-full">
+                                <p class="text-sm text-right text-green-600">
+                                    <?= $item['name'] . ' ➜ ' . $item['quantity']  . ' Buah' ?></p>
                             </div>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                 </div>
+            </div>
             <?php endforeach; ?>
         </div>
     </div>
